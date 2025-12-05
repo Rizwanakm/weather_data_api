@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/weatherdb");
-    console.log("MongoDB connected");
-  } catch (error) {
-    console.error(error);
+    await mongoose.connect(process.env.MONGO_URI as string);
+    console.log("MongoDB Connected");
+  } catch (err) {
+    console.error(err);
     process.exit(1);
   }
 };
